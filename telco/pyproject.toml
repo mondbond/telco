@@ -1,0 +1,95 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "telco"
+readme = "README.md"
+dynamic = ["dependencies", "version"]
+
+[tool.poetry]
+name = "telco"
+version = "0.1.0"
+description = ""
+authors = ["Ion Bagrii <someMyEmail@example.com>"]
+
+[tool.poetry.group.dev.dependencies]
+kedro-viz = "5.0.0"
+
+[project.scripts]
+telco = "telco.__main__:main"
+
+[project.entry-points."kedro.hooks"]
+
+[tool.poetry.dependencies]
+python = ">=3.10,<3.11.dev0"
+kedro = "^0.19.5"
+scikit-learn = "^1.4.2"
+torch = "^2.3.0"
+matplotlib = "^3.8.4"
+pandas = "^2.3.0"
+mlflow = "^3.1.1"
+joblib = "^1.5.1"
+kedro-datasets = "^7.0.0"
+tensorflow = "^2.14.0"
+tensorflow-io-gcs-filesystem = "0.27.0"
+seaborn = "^0.13.2"
+
+[project.optional-dependencies]
+docs = [
+    "docutils<0.18.0",
+    "sphinx~=3.4.3",
+    "sphinx_rtd_theme==0.5.1",
+    "nbsphinx==0.8.1",
+    "sphinx-autodoc-typehints==1.11.1",
+    "sphinx_copybutton==0.3.1",
+    "ipykernel>=5.3, <7.0",
+    "Jinja2<3.1.0",
+    "myst-parser~=0.17.2",
+]
+
+[tool.setuptools.dynamic]
+dependencies = {file = "requirements.txt"}
+version = {attr = "telco.__version__"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+namespaces = false
+
+[tool.kedro]
+package_name = "telco"
+project_name = "telco"
+kedro_init_version = "0.19.4"
+tools = ['Linting', 'Testing', 'Custom Logging', 'Data Structure']
+example_pipeline = "True"
+source_dir = "src"
+
+[tool.pytest.ini_options]
+addopts = """
+--cov-report term-missing \
+--cov src/telco -ra"""
+
+[tool.coverage.report]
+fail_under = 0
+show_missing = true
+exclude_lines = ["pragma: no cover", "raise NotImplementedError"]
+
+[tool.ruff.format]
+docstring-code-format = true
+
+[tool.ruff]
+line-length = 88
+show-fixes = true
+select = [
+    "F",   # Pyflakes
+    "W",   # pycodestyle
+    "E",   # pycodestyle
+    "I",   # isort
+    "UP",  # pyupgrade
+    "PL",  # Pylint
+    "T201", # Print Statement
+]
+ignore = ["E501"]  # Ruff format takes care of line-too-long
+
+[tool.kedro_telemetry]
+project_id = "75f0089f015943a29ac49923743e571a"
