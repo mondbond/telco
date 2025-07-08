@@ -1,9 +1,9 @@
 TELCO
 
-Main goal of the projects is get familiar with production-like tools like kedro and mlflow, tracking different parameters of the model.
+Main goal of the project is to get familiar with production-like tools like Kedro and MLflow, tracking different parameters of the model.
 
-For example I took the telco dataset from kaggle in order to resolve binary classification with keras problem and show the metrics.
+For example, I took the Telco dataset from Kaggle in order to resolve a binary classification problem with Keras and show the metrics.
 
-*This is newly created evidence of my experience with kedro, MLflow, and keras.
+*This is newly created evidence of my experience with Kedro, MLflow, and Keras.
 *A few months ago, I worked on a more complex experimental project using these tools,
-*although I did not preserve that work at the time, as it was not intended for long-term project.
+*although I did not preserve that work at the time, as it was not intended as a long-term project.
