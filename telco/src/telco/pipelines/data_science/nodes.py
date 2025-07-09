@@ -7,8 +7,7 @@ from keras.optimizers import Adam
 from sklearn.model_selection import train_test_split
 import mlflow.keras
 import seaborn as sns
-from sklearn.metrics import accuracy_score, confusion_matrix
-
+from sklearn.metrics import accuracy_score, confusion_matrix, recall_score, f1_score
 
 def split_telco_data(X, y):
     X_train, X_val, y_train, y_val = train_test_split(X, y, test_size=0.2)
@@ -46,7 +45,12 @@ def evaluate_telco_model(model, X_test, y_test):
     y_pred = prediciton_to_target(y_pred)
 
     accuracy = accuracy_score(y_test, y_pred)
+    recall = recall_score(y_test, y_pred)
+    f1_score = f1_score(y_test, y_pred)
+    
     mlflow.log_metric("test_accuracy", accuracy)
+    mlflow.log_metric("test_f1_score", f1_score)
+    mlflow.log_metric("test_recall", recall)
 
     confusion = confusion_matrix(y_test, y_pred)
 
